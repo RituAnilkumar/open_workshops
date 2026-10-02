@@ -1,0 +1,172 @@
+# =============================================================================
+# open_workshops — event configuration
+# =============================================================================
+# Fill in every value marked "TODO". The scripts refuse to run while any value
+# that a template needs still starts with "TODO".
+#
+# Every key here becomes a placeholder named SECTION_KEY in upper case, e.g.
+#   [event] name          ->  <<<EVENT_NAME>>>
+#   [signatory] title     ->  <<<SIGNATORY_TITLE>>>
+# The same placeholder names are used in the LaTeX templates (letters,
+# invoices, certificates) and the email templates.
+#
+# Leave a value as "" if you want that text left out (only for keys marked
+# "optional").
+# =============================================================================
+
+
+[event]
+name             = "TODO: full event name, e.g. International Workshop on Topic X 2027"
+type             = "workshop"          # workshop / conference / summer school ... (used in running text)
+start_date       = "TODO: e.g. Monday 23 August 2027"
+end_date         = "TODO: e.g. Thursday 26 August 2027"
+dates_short      = "TODO: e.g. 23–26 August 2027"   # used in certificate header and email intro
+# optional: extra sentence(s) about the programme added to the registration emails,
+# e.g. "A satellite meeting will be held on the afternoon of the last day."
+programme_note   = ""
+
+
+[venue]
+name             = "TODO: venue name, e.g. Example Conference Centre"
+city             = "TODO: city"
+country          = "TODO: country"
+
+
+[accommodation]
+# Used in the visa/travel invitation letter and the registration emails.
+name             = "TODO: where participants stay, e.g. the venue guest house"
+cost             = "TODO: e.g. 99 EUR per person per night in shared rooms"
+# optional: sentence added to the registration emails
+email_note       = "Please note that the registration fee does not include accommodation, which will need to be paid on site."
+
+
+[letters]
+# Invitation letters (invitation_letters/generate_letters.py).
+# Period covered by the visa/travel letter (usually a few days either side of the event).
+cover_start_date = "TODO: e.g. 21 August 2027"
+cover_end_date   = "TODO: e.g. 29 August 2027"
+# Date printed on the letters; "" = the day they are generated.
+date             = ""
+# optional: path to a second logo (host / partner institution) shown top right; "" = none
+partner_logo     = ""
+# Which letter(s) each participant gets is read from the registration form's
+# invitation-letter question ([columns] invitation_letter): an answer
+# containing visa_keyword gets the visa/travel letter, one containing
+# funder_keyword gets the funder letter (both if both are ticked).
+visa_keyword     = "visa"
+funder_keyword   = "funding"
+
+
+[signatory]
+# Person who signs invoices, certificates and invitation letters.
+name             = "TODO: signatory full name, incl. title if wanted (e.g. Dr. A. Person)"
+title            = "TODO: position, e.g. Chair of the Organising Committee"
+affiliation      = "TODO: signatory affiliation"
+# optional: path to a signature image (PNG/JPG/PDF) used on letters, invoices and
+# certificates. Relative to this folder (e.g. "assets/signature.png") or
+# absolute. "" = no image.
+signature_image  = ""
+
+
+[organiser]
+# The legal body that issues invoices and receives payments.
+name             = "TODO: organisation name"
+address_line1    = "TODO: street and number"
+address_line2    = "TODO: postcode and city"
+address_line3    = "TODO: country"
+email            = "TODO: contact email"
+website          = "TODO: website, e.g. www.example.org"
+# optional registration details printed on invoices; "" hides a line
+registration     = ""                  # e.g. "Registered as non-profit at District Court X"
+registry_number  = ""                  # e.g. "VR 1234 HB"
+tax_id           = ""                  # e.g. "12 345 67890"
+# optional VAT / tax note under the invoice table
+vat_note         = ""                  # e.g. "In accordance with article 19 of the German VAT Act (§ 19 UStG), the invoice is exempt from VAT."
+# Path to the organiser logo (PDF, PNG or JPG) used on letters, invoices and certificates.
+# Relative to this folder (e.g. "assets/logo.pdf") or absolute
+# (e.g. "C:/Users/me/Pictures/logo.png"). "" = no logo.
+logo             = ""
+
+
+[bank]
+account_name     = "TODO: account holder"
+bank_name        = "TODO: bank name"
+iban             = "TODO: IBAN"
+bic              = "TODO: BIC / SWIFT"
+
+
+[registration]
+fee              = "TODO: registration fee as a number, e.g. 250.00"
+currency         = "EUR"
+payment_deadline = "TODO: e.g. 1 June 2027"
+# Invoice number format. The last group of N's is replaced by the participant's
+# form response ID, zero-padded to that many digits:
+#   "ABC_2027_NNN"  ->  ABC_2027_005 for response ID 5
+# The ID never changes, so removing cancellations from the export does not
+# renumber anyone's invoice.
+invoice_number_format = "TODO: e.g. ABC_2027_NNN"
+# Form participants fill in after paying (or after receiving a fee waiver).
+# Its responses are only for your own payment check; no script reads them.
+payment_form_url = "TODO: link to the payment-confirmation form"
+
+
+[fee_waiver]
+# Used for participants marked as fee-waived ([columns] fee_waived).
+# optional: who funds the waivers, e.g. "the International Association of X"
+funder           = ""
+# optional: condition attached to the waiver, e.g. a membership requirement
+condition        = ""
+# optional: link that goes with the condition
+condition_url    = ""
+
+
+[email]
+# Outlook (Windows) is used to send. The account must have "send on behalf"
+# rights for this address.
+sender_address   = "TODO: address emails are sent from"
+sender_name      = "TODO: name shown under the email sign-off"
+delay_seconds    = 10                  # pause between emails
+# optional: programme PDF attached to registration emails, e.g.
+# "schedule/programme_schedule.pdf" (relative to this folder, or absolute). "" = none.
+schedule_pdf     = ""
+invoice_subject  = "Programme schedule and invoice for <<<EVENT_NAME>>>"
+waiver_subject   = "Registration fee waiver and programme schedule for <<<EVENT_NAME>>>"
+
+
+[schedule]
+# "PRELIMINARY" makes the registration emails call the attached programme
+# tentative; set to "" once the programme is final.
+status           = "PRELIMINARY"
+
+
+[certificates]
+issue_date       = "TODO: date printed on certificates, e.g. 26 August 2027"
+# Same rule as invoice_number_format: the last group of N's becomes the response ID.
+number_format    = "TODO: e.g. ABC_2027_CERT_NNN"
+design           = "plain"             # plain / decorative
+
+
+[files]
+# The Microsoft Forms registration export, used as the participant list by
+# every script. Remove the rows of anyone who cancels; scripts re-read it
+# each time. Relative to this folder, or absolute.
+registration_export = "data/registration_form_export.xlsx"
+
+
+[columns]
+# Column headings in the registration export. The defaults match the template
+# registration form; change the right-hand side if your form differs.
+id                 = "ID"
+name               = "Your Name"
+affiliation        = "Affiliation (Institute, University, Country)"
+email              = "Email ID"
+# If "", the country is taken from the affiliation after its last comma
+# ("Institute, University, Country"); otherwise the name of a country column.
+country            = ""
+invitation_letter  = "Do you need an invitation letter? If yes, and the reason is not specified, please use the Others option"
+talk_title         = "Tentative title of your presentation."
+
+# Columns you add to the export yourself (optional: leave a column out if not needed).
+fee_waived          = "Fee Waived"          # "yes" = no invoice, waiver email instead
+presentation_format = "Presentation Format" # accepted format, e.g. Oral / Poster; filled = abstract accepted (visa/travel letter)
+attended            = "Attended"            # if the column exists, certificates only for "yes"

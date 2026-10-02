@@ -1,0 +1,10 @@
+name: open-workshops
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pandas
+  - openpyxl     # reading form exports / writing the review sheet
+  - pypdf        # merging certificates for printing
+  - tectonic     # compiling invoices and certificates (LaTeX)
+  - pywin32      # sending email via Outlook, PDF export via Word (Windows only)

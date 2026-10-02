@@ -1,0 +1,45 @@
+\documentclass[letterhead,enlargefirstpage=true]{scrlttr2}
+
+% Invoice template. <<<...>>> placeholders are filled by generate_invoices.py
+% from config.toml and the participant list.
+
+\usepackage[english]{babel}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+
+\begin{document}
+
+\setkomavar{fromname}{<<<ORGANISER_NAME>>>}
+
+\setkomavar{signature}{%
+  <<<SIGNATURE_TEX>>>%
+  <<<SIGNATORY_NAME>>>\\
+  On behalf of the organising committee\\<<<EVENT_NAME>>>}
+
+\setkomavar{subject}{Invoice No.: <<<INVOICE_NUMBER>>>}
+
+\setkomavar{date}{\today}
+
+\begin{letter}{<<<PARTICIPANT_NAME>>>\\
+<<<PARTICIPANT_ORGANISATION>>>\\
+<<<PARTICIPANT_COUNTRY>>>}
+
+\opening{Dear <<<PARTICIPANT_NAME>>>,}
+
+Thank you for registering for the <<<EVENT_NAME>>>, to be held at the <<<VENUE_NAME>>>, <<<VENUE_CITY>>>, <<<VENUE_COUNTRY>>>, from <<<EVENT_START_DATE>>> to <<<EVENT_END_DATE>>>. The details of the fee for the event are as follows:
+
+\begin{tabular}{c p{54mm} c r r}
+\bfseries Pos. & \bfseries Item & \bfseries Qt. & \bfseries Unit price & \bfseries Position total \\ \hline
+1 & Registration fee: <<<EVENT_NAME>>> & 1 & <<<INVOICE_TOTAL>>> & <<<INVOICE_TOTAL>>> \\ \hline
+\multicolumn{4}{l}{\bfseries Total invoice amount} & \bfseries <<<INVOICE_TOTAL>>> \\
+\end{tabular}
+
+<<<VAT_NOTE_TEX>>>
+
+<<<ORGANISER_NAME>>> kindly asks you to settle this invoice by <<<REGISTRATION_PAYMENT_DEADLINE>>>, via bank transfer, referencing the Invoice No.\ stated above. The invoice was created in digital form and is considered to be the original. We will not send a separate paper copy.
+
+\closing{With kind regards and looking forward to welcoming you to <<<VENUE_CITY>>>,}
+
+\end{letter}
+\end{document}

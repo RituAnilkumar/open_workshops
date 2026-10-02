@@ -1,0 +1,91 @@
+\documentclass[a4paper,11pt]{article}
+
+% Invitation letter for visa applications and travel funding.
+% <<<...>>> placeholders are filled by generate_letters.py from config.toml
+% and the registration export. Edit the wording freely; keep the placeholders.
+
+\usepackage[english]{babel}
+\usepackage{fontspec}
+\setmainfont{Calibri}   % ships with Windows/Office; elsewhere use e.g. Carlito
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{etoolbox}
+\usepackage{microtype}
+
+\geometry{left=19mm, right=19mm, top=13mm, bottom=19mm}
+\definecolor{accent}{HTML}{1F5C8B}
+\definecolor{headrule}{HTML}{336699}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+\pagestyle{empty}
+
+% Presentation details. \PresentationFormat is e.g. "an oral" / "a poster",
+% or empty if no accepted format is recorded for this person; the abstract
+% sentence is then left out.
+\newcommand{\PresentationTitle}{<<<TALK_TITLE>>>}
+\newcommand{\PresentationFormat}{<<<PRESENTATION_FORMAT_ARTICLE>>>}
+
+\begin{document}
+
+% ----------------------------------------------------------------- letterhead
+\begin{minipage}[c][22mm][c]{0.5\textwidth}
+<<<LOGO_TEX>>>
+\end{minipage}%
+\begin{minipage}[c][22mm][c]{0.5\textwidth}
+\raggedleft <<<PARTNER_LOGO_TEX>>>
+\end{minipage}
+
+{\color{headrule}\rule{\textwidth}{0.6pt}}
+
+\hfill Date: \textbf{\color{accent}<<<LETTER_DATE_TEX>>>}
+
+\vspace{4mm}
+{\large\bfseries Letter of Invitation}
+
+Name: <<<PARTICIPANT_NAME>>>\\
+Affiliation: <<<PARTICIPANT_AFFILIATION>>>
+
+\vspace{2mm}
+Dear \textbf{\color{accent}<<<PARTICIPANT_NAME>>>},
+
+% ----------------------------------------------------------------------- body
+\ifdefempty{\PresentationFormat}{%
+As a member of the organising committee, we are delighted to invite you to
+participate in the \textbf{<<<EVENT_NAME>>>},%
+}{%
+As a member of the organising committee, we are delighted to inform you that
+your abstract has been accepted. We invite you to present your study titled
+`\textbf{\PresentationTitle}' as \PresentationFormat{} presentation and to
+participate in the \textbf{<<<EVENT_NAME>>>},%
+}
+to be held at the <<<VENUE_NAME>>>, <<<VENUE_CITY>>>, <<<VENUE_COUNTRY>>>, from
+<<<EVENT_START_DATE>>> to <<<EVENT_END_DATE>>>.
+
+This invitation is issued to assist you in securing travel funds or obtaining a
+visa where required. It does not constitute a commitment by the organisers to
+provide financial support. We are reserving accommodation on behalf of the
+participants at the <<<ACCOMMODATION_NAME>>>. The participants are expected to
+complete payment of the accommodation in person at the venue. You can expect
+accommodation costs of <<<ACCOMMODATION_COST>>>. You must ensure having
+sufficient financial means and valid health insurance for the duration of the
+stay in <<<VENUE_COUNTRY>>>.
+
+To allow for international travel arrangements, we extend the scope of this
+invitation to cover the period of <<<LETTERS_COVER_START_DATE>>> to
+<<<LETTERS_COVER_END_DATE>>>.
+
+We very much look forward to welcoming you in <<<VENUE_CITY>>>.
+
+Kind regards,
+
+\vspace{4mm}
+<<<SIGNATURE_TEX>>>
+\textbf{<<<SIGNATORY_NAME>>>}\\
+<<<SIGNATORY_TITLE>>>\\
+<<<SIGNATORY_AFFILIATION>>>\\
+On behalf of the Organising Committee\\
+<<<EVENT_NAME>>>\\
+<<<VENUE_NAME>>>, <<<VENUE_COUNTRY>>>
+
+\end{document}

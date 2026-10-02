@@ -1,0 +1,6 @@
+# Personal data and generated files stay local. Only *_example.* files in data/ are shared.
+data/*
+!data/*_example.*
+*/output/
+certificates/certificates_for_printing.pdf
+__pycache__/

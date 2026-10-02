@@ -1,0 +1,101 @@
+\documentclass[a4paper,12pt]{article}
+
+% Certificate of participation ("decorative" design, no talk title).
+% <<<...>>> placeholders are filled by generate_certificates.py from
+% config.toml and the participant list.
+
+\usepackage[english]{babel}
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{microtype}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{ragged2e}
+
+\geometry{
+  left=25mm,
+  right=25mm,
+  top=22mm,
+  bottom=25mm
+}
+
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+% -----------------------------------------------------------------------------
+% Certificate fields
+% -----------------------------------------------------------------------------
+\newcommand{\ParticipantName}{<<<PARTICIPANT_NAME>>>}
+\newcommand{\ParticipantAffiliation}{<<<PARTICIPANT_ORGANISATION>>>}
+\newcommand{\CertificateDate}{<<<CERTIFICATES_ISSUE_DATE>>>}
+\newcommand{\CertificateNumber}{<<<CERTIFICATE_NUMBER>>>}
+
+\begin{document}
+
+\begin{center}
+  <<<LOGO_TEX>>>
+\end{center}
+
+\vspace{18mm}
+
+\begin{center}
+  {\fontsize{25}{30}\selectfont\bfseries CERTIFICATE}
+  \par\vspace{4mm}
+  {\fontsize{14}{18}\selectfont\bfseries OF PARTICIPATION}
+\end{center}
+
+\vspace{18mm}
+
+\begin{center}
+\begin{minipage}{0.88\textwidth}
+\centering
+\setstretch{1.35}
+\fontsize{14}{20}\selectfont
+
+This is to certify that
+
+\vspace{5mm}
+{\fontsize{20}{25}\selectfont\bfseries \ParticipantName}
+
+\vspace{4mm}
+{\fontsize{13}{18}\selectfont \ParticipantAffiliation}
+
+\vspace{8mm}
+participated in the
+
+\vspace{3mm}
+{\fontsize{17}{22}\selectfont\bfseries <<<EVENT_NAME>>>}
+
+\vspace{5mm}
+held at the <<<VENUE_NAME>>>, <<<VENUE_COUNTRY>>>,
+from <<<EVENT_START_DATE>>> to <<<EVENT_END_DATE>>>.
+
+\end{minipage}
+\end{center}
+
+\vfill
+
+% Signature and certificate information
+\begin{center}
+\makebox[52mm]{<<<SIGNATURE_IMAGE_TEX>>>}\hspace{35mm}\makebox[52mm]{}\\
+\rule{52mm}{0.4pt}
+\hspace{35mm}
+\rule{52mm}{0.4pt}
+
+\vspace{2mm}
+\begin{tabular}{>{\centering\arraybackslash}p{52mm} @{}p{35mm}@{} >{\centering\arraybackslash}p{52mm}}
+<<<SIGNATORY_NAME>>> & & \CertificateDate \\
+On behalf of the organising committee & & \small Certificate No.: \CertificateNumber \\
+<<<EVENT_NAME>>> & & \\
+\end{tabular}
+\end{center}
+
+\vspace{8mm}
+
+\begin{center}
+{\small\color{gray}<<<ORGANISER_NAME>>> \textbullet\ <<<ORGANISER_WEBSITE>>>}
+\end{center}
+
+\end{document}

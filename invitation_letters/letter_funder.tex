@@ -1,0 +1,72 @@
+\documentclass[a4paper,11pt]{article}
+
+% Invitation letter confirming participation, for an employer, institution or
+% funder (no travel / visa support).
+% <<<...>>> placeholders are filled by generate_letters.py from config.toml
+% and the registration export. Edit the wording freely; keep the placeholders.
+
+\usepackage[english]{babel}
+\usepackage{fontspec}
+\setmainfont{Calibri}   % ships with Windows/Office; elsewhere use e.g. Carlito
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{microtype}
+
+\geometry{left=19mm, right=19mm, top=13mm, bottom=19mm}
+\definecolor{accent}{HTML}{1F5C8B}
+\definecolor{headrule}{HTML}{336699}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+\pagestyle{empty}
+
+\begin{document}
+
+% ----------------------------------------------------------------- letterhead
+\begin{minipage}[c][22mm][c]{0.5\textwidth}
+<<<LOGO_TEX>>>
+\end{minipage}%
+\begin{minipage}[c][22mm][c]{0.5\textwidth}
+\raggedleft <<<PARTNER_LOGO_TEX>>>
+\end{minipage}
+
+{\color{headrule}\rule{\textwidth}{0.6pt}}
+
+\hfill Date: \textbf{\color{accent}<<<LETTER_DATE_TEX>>>}
+
+\vspace{4mm}
+{\large\bfseries Letter of Invitation}
+
+Name: <<<PARTICIPANT_NAME>>>\\
+Affiliation: <<<PARTICIPANT_AFFILIATION>>>
+
+\vspace{2mm}
+Dear \textbf{\color{accent}<<<PARTICIPANT_NAME>>>},
+
+% ----------------------------------------------------------------------- body
+As a member of the organising committee, we are delighted to invite you to
+participate in the \textbf{<<<EVENT_NAME>>>}, to be held at the
+<<<VENUE_NAME>>>, <<<VENUE_CITY>>>, <<<VENUE_COUNTRY>>>, from
+<<<EVENT_START_DATE>>> to <<<EVENT_END_DATE>>>.
+
+This letter serves as confirmation of your acceptance to the <<<EVENT_TYPE>>>
+and may be used as supporting documentation for your institution, employer or
+funding organisation, as required. Please note that this invitation does not
+imply any financial support from the organisers. Participants are responsible
+for ensuring they have adequate financial means and valid health insurance for
+the duration of their stay in <<<VENUE_COUNTRY>>>.
+
+We very much look forward to welcoming you in <<<VENUE_CITY>>>.
+
+Kind regards,
+
+\vspace{4mm}
+<<<SIGNATURE_TEX>>>
+\textbf{<<<SIGNATORY_NAME>>>}\\
+<<<SIGNATORY_TITLE>>>\\
+<<<SIGNATORY_AFFILIATION>>>\\
+On behalf of the Organising Committee\\
+<<<EVENT_NAME>>>\\
+<<<VENUE_NAME>>>, <<<VENUE_COUNTRY>>>
+
+\end{document}

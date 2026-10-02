@@ -1,0 +1,60 @@
+%
+% Letterhead used by invoice_template.tex (KOMA-Script scrlttr2 letter class option).
+% The <<<...>>> placeholders are filled from config.toml by generate_invoices.py.
+% Layout tweaks (font, column widths, spacing) can be made directly here.
+%
+\ProvidesFile{letterhead.lco}[letter-class-option file]
+
+\KOMAoptions{
+        fontsize=11pt,
+        foldmarks=MPvb,
+        backaddress=plain,
+        pagenumber=footright%
+}
+
+% Font: Calibri ships with Windows/Office. On other systems change it to an
+% installed font (e.g. "Carlito", a metric-compatible replacement).
+\RequirePackage{fontspec}
+\setmainfont{Calibri}
+\setsansfont{Calibri}
+
+\RequirePackage[stretch=10]{microtype}
+\RequirePackage{lastpage}
+\RequirePackage{graphicx}
+
+% logo
+\@addtoplength{firstheadvpos}{10mm}
+\setkomavar{fromlogo}{%
+\hspace*{0mm}}
+\setkomavar{firsthead}{\usekomavar{fromlogo}\hfill}
+
+\setkomavar{backaddress}{<<<ORGANISER_NAME>>>, <<<ORGANISER_ADDRESS_LINE1>>>, <<<ORGANISER_ADDRESS_LINE2>>>, <<<ORGANISER_ADDRESS_LINE3>>>}
+
+\setlength{\oddsidemargin}{\useplength{toaddrhpos}}%
+\addtolength{\oddsidemargin}{-1in}%
+
+\setlength{\textwidth}{120mm}
+\addtolength{\textheight}{55mm}
+\addtolength{\topmargin}{-15mm}
+\@setplength{locvpos}{\useplength{firstheadvpos}}
+\@setplength{locwidth}{53mm}
+\@setplength{lochpos}{10mm}
+\@setplength{locheight}{27.2cm}
+\@setplength{backaddrheight}{1.4cm}
+
+
+% right-hand column: logo, organiser details, bank account
+\setkomavar{location}{%
+  \begin{tabular}[t]{l@{}}
+  <<<LOGO_TEX>>>\\[19mm]
+  \textbf{\usekomavar{fromname}}\\[1mm]
+  \end{tabular}%
+\\%
+ {\small
+  \begin{tabular}[t]{l@{}}
+<<<ORGANISER_DETAILS_TEX>>>
+  \end{tabular}%
+  }
+}
+
+\endinput
